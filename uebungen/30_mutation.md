@@ -8,7 +8,6 @@
   * Auch hier lässt du dir per Dependency Injection das `StoryRepository` von Spring übergeben
   * Du kannst am `StoryRepository` die Methode `createComment` verwenden, um den Kommentar in unserer "Datenbank" hinzuzufügen
 * Du kannst deine Mutation testen:
-  * Ausführen der Test-Klasse `nh.springgraphql.graphqlservice.graphql.MutationControllerTest`
   * Ausführen der Mutation in GraphiQL
     * Kannst du die Mutation in GraphiQL ausführen und das Input-Objekt als **Variable** übergeben?
 
