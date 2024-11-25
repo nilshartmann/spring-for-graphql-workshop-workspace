@@ -15,7 +15,7 @@
     * (anstatt der bisher hardcodierten 3 Zeichen)
 * Du kannst außerdem unserem `graphql-service` starten und in GraphiQL Queries ausführen:
   * Starten der Klasse `nh.springgraphql.graphqlservice.GraphqlServiceApplication`
-  * GraphiQL läuft auf `http://localhost:8080/graphiql`
+  * GraphiQL läuft auf `http://localhost:8080/`
     * Ggf. den Port in der `application.properties`-Datei anpassen bzw. nachgucken (Property `server.port`)
 
 
