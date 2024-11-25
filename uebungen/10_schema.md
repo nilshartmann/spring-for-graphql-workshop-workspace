@@ -1,6 +1,6 @@
 # Schritt 1: Schema erzeugen
 
-* Erzeuge in der Datei `src/main/resources/schema.graphqls` die Basis für unser Schema:
+* Erzeuge in der Datei `src/main/resources/graphql/schema.graphqls` die Basis für unser Schema:
 * Es soll den Typen `Story` geben, der folgende Felder hat (alle nicht nullable):
   * `id`, `title`, `body`, `excerpt`, `state` und `comments`
   * `title`, `body` und `excerpt` enthalten Texte
