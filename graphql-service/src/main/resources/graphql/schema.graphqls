@@ -31,6 +31,7 @@ type Comment {
     rating: Int!
 }
 
+
 """
 Das ist der Einstiegspunkt!
 """
@@ -40,4 +41,14 @@ type Query {
         storyId: ID!): Story
 
     stories: [Story!]!
+}
+
+input CreateCommentInput {
+    storyId: ID!,
+    text: String!,
+    rating: Int!
+}
+
+type Mutation {
+    createComment(input: CreateCommentInput): Comment!
 }

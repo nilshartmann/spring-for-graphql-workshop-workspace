@@ -1,0 +1,11 @@
+{
+  "query": "mutation CreateANewComment($newComment: CreateCommentInput!) {\n  createComment(input: $newComment) {\n    id\n  }\n}\n\n",
+  "variables": {
+    "newComment": {
+      "storyId": "1",
+      "text": "Hallo Welt",
+      "rating": 23
+    }
+  },
+  "operationName": "CreateANewComment"
+}
