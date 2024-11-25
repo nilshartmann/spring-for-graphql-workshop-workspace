@@ -1,5 +1,39 @@
-# Dummy Schema, damit IntelliJ keinen Fehler anzeigt
-# Du kannst den Inhalt löschen und hier dein Schema reinschreiben
+type Story {
+
+    id: ID!
+    title: String!
+    body: String!
+    excerpt: String!
+
+    "Liefert den `PublicationState` zurück"
+    state: PublicationState!
+
+    """
+    Liefert die **Kommentare** zurück
+
+    - oder _leere_ Liste
+    """
+    comments: [Comment!]!
+
+    # todo umsetzen!
+
+}
+
+enum PublicationState {
+    draft, in_review, published
+}
+
+type Comment {
+    id: ID!
+    text: String!
+    rating: Int!
+}
+
+"""
+Das ist der Einstiegspunkt!
+"""
 type Query {
-    ping: String
+    story(
+        """Die Id der Story"""
+        id: ID!): Story
 }
