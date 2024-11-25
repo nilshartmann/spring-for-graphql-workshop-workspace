@@ -3,7 +3,9 @@ type Story {
     id: ID!
     title: String!
     body: String!
-    excerpt: String!
+    excerpt(maxLength: Int! = 20): String!
+
+#    addresse: String!
 
     "Liefert den `PublicationState` zurück"
     state: PublicationState!
