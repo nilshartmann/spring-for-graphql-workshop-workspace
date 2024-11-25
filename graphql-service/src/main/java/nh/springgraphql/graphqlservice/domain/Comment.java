@@ -1,4 +1,7 @@
 package nh.springgraphql.graphqlservice.domain;
 
-public record Comment(String id, String text, int rating) {
+public record Comment(
+    String id,
+    String text,
+    int rating) {
 }

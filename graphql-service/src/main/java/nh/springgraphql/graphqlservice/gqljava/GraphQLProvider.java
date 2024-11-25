@@ -42,12 +42,13 @@ public class GraphQLProvider {
 
         RuntimeWiring wiring = RuntimeWiring.newRuntimeWiring()
             .type("Query", builder -> {
-                // todo: DataFetcher registrieren
-                return builder;
+                return builder
+                    .dataFetcher("stories", new QueryStoriesDataFetcher())
+                    .dataFetcher("story", new StoryByIdDataFetcher());
             })
             .type("Story", builder -> {
+                return builder.dataFetcher("excerpt", new ExcerptDataFetcher());
                     // todo: DataFetcher registrieren
-                    return builder;
                 }
             )
             .build();

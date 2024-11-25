@@ -10,4 +10,6 @@ public record Story(String id,
                     String publisherId,
                     PublicationState state,
                     List<Comment> comments) {
+
+
 }

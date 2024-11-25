@@ -35,5 +35,7 @@ Das ist der Einstiegspunkt!
 type Query {
     story(
         """Die Id der Story"""
-        id: ID!): Story
+        storyId: ID!): Story
+
+    stories: [Story!]!
 }
