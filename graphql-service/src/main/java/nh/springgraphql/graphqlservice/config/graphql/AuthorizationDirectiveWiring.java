@@ -30,7 +30,7 @@ public class AuthorizationDirectiveWiring implements SchemaDirectiveWiring {
             public Object get(DataFetchingEnvironment environment) throws Exception {
                 var auth = SecurityContextHolder.getContext().getAuthentication();
                 if (auth == null) {
-                    // Keine Authenicatio im Objekt gesetzt => Zugriff nicht erlaubt
+                    // Keine Authenication im Objekt gesetzt => Zugriff nicht erlaubt
                     //   (Kein Benutzer => keine Rolle => kein Zugriff)
                     return null;
                 }
@@ -43,7 +43,7 @@ public class AuthorizationDirectiveWiring implements SchemaDirectiveWiring {
                 }
 
                 // Ausführung / Ermitteln der Daten an den ursprünglichen DataFetcher
-                // deligieren
+                // delegieren
                 return existingDf.get(environment);
             }
         };
