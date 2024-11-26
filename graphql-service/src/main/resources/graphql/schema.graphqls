@@ -52,3 +52,11 @@ input CreateCommentInput {
 type Mutation {
     createComment(input: CreateCommentInput): Comment!
 }
+
+type CommentCreatedEvent {
+    newComment:Comment!
+}
+
+type Subscription {
+    onNewComment(storyId: ID!): CommentCreatedEvent
+}
