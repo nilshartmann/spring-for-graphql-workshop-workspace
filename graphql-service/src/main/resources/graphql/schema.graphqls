@@ -17,6 +17,19 @@ type Media {
     metadata: MediaMetadata
 }
 
+enum ContactType { phone, email }
+
+type Contact {
+    type: ContactType
+    value: String!
+}
+
+type Publisher  {
+    id: ID!
+    name: String!
+    contact: Contact!
+}
+
 type Story {
 
     id: ID!
@@ -24,6 +37,8 @@ type Story {
     body: String!
     excerpt(maxLength: Int! = 20): String!
     media: [Media!]
+
+    publisher: Publisher!
 
 #    addresse: String!
 
