@@ -38,7 +38,9 @@ type Story {
     excerpt(maxLength: Int! = 20): String!
     media: [Media!]
 
-    publisher: Publisher!
+    # Nullable, weil zur Laufzeit evtl.
+    # nicht ermittelbar
+    publisher: Publisher
 
 #    addresse: String!
 
@@ -76,7 +78,26 @@ type Query {
         storyId: ID!): Story
 
     stories: [Story!]!
+
+#    stories(page: Int!, size: Int!): StoryList!
 }
+# https://relay.dev/graphql/connections.htm
+#type StoryConnection {
+#    storyCount: Int!
+#
+#    page: Int!
+#    hasNextPage: Boolean!
+#
+##    stories: [Story!]!
+#
+#    nodes: [StoryNode!]!
+#
+#}
+
+#type StoryNode {
+#    cursor: ID!
+#    story: Story!
+#}
 
 input CreateCommentInput {
     storyId: ID!,
@@ -84,6 +105,30 @@ input CreateCommentInput {
     rating: Int!
 }
 
+input AddCommentInput {
+    storyId: ID!,
+    text: String!,
+    rating: Int!
+}
+
+#type AddCommentPayload {
+#    newComment: Comment
+#    createdAt: String
+#
+#    errorMessage: String
+#}
+
+type AddCommentSuccess {
+    newComment: Comment!
+}
+
+type AddCommentError {
+    msg: String!
+}
+
+union AddCommentPayload = AddCommentSuccess | AddCommentError
+
 type Mutation {
-    createComment(input: CreateCommentInput): Comment!
+    createComment(input: CreateCommentInput!): Comment! @deprecated(reason: "Schlechte Signatur!")
+    addComment(input: AddCommentInput!): AddCommentPayload!
 }
