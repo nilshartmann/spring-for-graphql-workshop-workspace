@@ -35,5 +35,34 @@ public class GraphQlConfig {
         return wiringBuilder -> wiringBuilder.directive("auth", new AuthorizationDirectiveWiring());
     }
 
+    // Wenn diese Bean aktiviert wird, darf eine Query nur eine maximale Komplexität
+    // vom 10 haben
+    //  -> In der Default-Konfiguration hat jedes Feld eine "Komplexität" von 1
+    //     so dass man mit der Konfiguration max. zehn Felder abfragen kann
+    //  Als 2. Parameter kann man einen "Calculator" angeben, der die Komplexität
+    //     eines Feldes individuell berechnet.
+    //     Damit kann man z.B. Felder, die einne Remote-Aufruf auslösen "komplexer"
+    //     machen als andere Felder
+    //     Meine examplarische Implemtierung "DirectiveBasedCalculator" dafür verwendet
+    //     eine Schema Direktive, mit der man im Schema festlegen kann, wie "komplex"
+    //     ein Feld ist.
+    //     (s. Schema-Datei)
+
+    //    @Bean
+//    MaxQueryComplexityInstrumentation maxQueryComplexityInstrumentation() {
+//        final Logger log = LoggerFactory.getLogger( GraphQlConfig.class );
+//        return new MaxQueryComplexityInstrumentation(10, new DirectiveBasedCalculator());
+//    }
+
+    // Mit dieser Bean kann man eine maximale Tiefe/maximale Anzahl
+    // von Ebenen angeben, die ein Client abfragen kann
+    //  damit kann man z.B. endlose Rekursionen verhindern
+    //   (Story -> Comment -> Story -> Comment)
+//    @Bean
+//    MaxQueryDepthInstrumentation maxQueryDepthInstrumentation() {
+//        return new MaxQueryDepthInstrumentation(3);
+//    }
+
+
 
 }

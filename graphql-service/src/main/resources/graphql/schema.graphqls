@@ -11,6 +11,10 @@ scalar DateTime
 #   den Publisher einer Story sehen)
 directive @auth(role: String!) on FIELD_DEFINITION
 
+# s. GraphQlConfig.maxQueryComplexityInstrumentation
+directive @complexity(complexity: Int! = 1) on FIELD_DEFINITION
+
+
 interface Node {
     id: ID!
 }
@@ -51,7 +55,12 @@ type Story implements Node {
     title: String!
     body: String!
     excerpt(maxLength: Int! = 20): String!
-    media: [Media!]
+
+    # Dieses Feld ist "teuer" zu ermitteln,
+    # deswegen hat es eine höhere Komplexität
+    # (wäre für publisher sicherlich auch so)
+
+    media: [Media!] @complexity(complexity: 5)
     date: DateTime!
 
     # Nullable, weil zur Laufzeit evtl.
@@ -85,6 +94,16 @@ type Comment implements Node {
     id: ID!
     text: String!
     rating: Int!
+
+    """Liefert die Story zurück, zu der dieser Kommentar gehört
+    Achtung! Jetzt "riesen" Queries möglich:
+      Story -> Comments -> Story -> Comments...
+
+      s. `GraphQlConfig.maxQueryDepthInstrumentation()`, um das
+      einzuschränken
+
+    """
+    story: Story!
 }
 
 
