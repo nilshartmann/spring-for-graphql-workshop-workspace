@@ -3,6 +3,7 @@ package nh.springgraphql.graphqlservice.graphql;
 import graphql.ErrorType;
 import graphql.GraphQLError;
 import graphql.schema.DataFetchingEnvironment;
+import jakarta.annotation.security.RolesAllowed;
 import nh.springgraphql.graphqlservice.domain.Comment;
 import nh.springgraphql.graphqlservice.domain.ResourceNotFoundException;
 import nh.springgraphql.graphqlservice.domain.StoryRepository;
@@ -37,6 +38,7 @@ public class MutationController {
 //
 //    }
 
+    @RolesAllowed("USER") // nur "USER" dürfen Kommentare anlegen
     @MutationMapping
     Comment createComment(@Argument CreateCommentInput input) {
 
