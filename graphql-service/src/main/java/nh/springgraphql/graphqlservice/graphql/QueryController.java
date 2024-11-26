@@ -30,8 +30,8 @@ public class QueryController {
 
 //    @SchemaMapping(typeName = "Query", field = "story")
     @QueryMapping
-    Optional<Story> story(@Argument String storyId) {
-        return storyRepository.findStory(storyId);
+    Optional<Story> story(@Argument NodeId storyId) {
+        return storyRepository.findStory(storyId.id());
     }
 
     @SchemaMapping

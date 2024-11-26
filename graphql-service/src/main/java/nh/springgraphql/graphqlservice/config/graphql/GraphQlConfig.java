@@ -6,6 +6,7 @@ import graphql.analysis.MaxQueryComplexityInstrumentation;
 import graphql.analysis.MaxQueryDepthInstrumentation;
 import graphql.scalars.ExtendedScalars;
 import nh.springgraphql.graphqlservice.config.graphql.tracing.SimplifiedTracingInstrumentation;
+import nh.springgraphql.graphqlservice.graphql.NodeId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -17,5 +18,10 @@ public class GraphQlConfig {
     @Bean
     public RuntimeWiringConfigurer runtimeWiringConfigurer() {
         return wiringBuilder -> wiringBuilder.scalar(ExtendedScalars.DateTime);
+    }
+
+    @Bean
+    NodeId.NodeIdConverter nodeIdConverter() {
+        return new NodeId.NodeIdConverter();
     }
 }

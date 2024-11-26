@@ -1,3 +1,11 @@
+scalar DateTime
+@specifiedBy(url:
+"https://scalars.graphql.org/andimarek/date-time.html"
+)
+
+interface Node {
+    id: ID!
+}
 enum MediaType {
     image,
     video,
@@ -24,19 +32,19 @@ type Contact {
     value: String!
 }
 
-type Publisher  {
+type Publisher implements Node{
     id: ID!
     name: String!
     contact: Contact!
 }
 
-type Story {
-
+type Story implements Node {
     id: ID!
     title: String!
     body: String!
     excerpt(maxLength: Int! = 20): String!
     media: [Media!]
+    date: DateTime!
 
     # Nullable, weil zur Laufzeit evtl.
     # nicht ermittelbar
@@ -62,7 +70,7 @@ enum PublicationState {
     draft, in_review, published
 }
 
-type Comment {
+type Comment implements Node {
     id: ID!
     text: String!
     rating: Int!
@@ -73,6 +81,11 @@ type Comment {
 Das ist der Einstiegspunkt!
 """
 type Query {
+    # S:1
+    # C:1
+    # P:1
+    node(id: ID!): Node
+
     story(
         """Die Id der Story"""
         storyId: ID!): Story
@@ -122,9 +135,23 @@ type AddCommentSuccess {
     newComment: Comment!
 }
 
+#interface Error {
+#    msg: String!
+#}
+
+
 type AddCommentError {
     msg: String!
+
+#    code: String!
 }
+
+#type StoryNotFoundError implements Error{
+#    msg: String!
+#
+#    storyId: ID!
+#}
+
 
 union AddCommentPayload = AddCommentSuccess | AddCommentError
 
