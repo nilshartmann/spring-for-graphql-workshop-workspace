@@ -1,5 +1,7 @@
-package nh.springgraphql.graphqlservice.domain;
+package nh.springgraphql.graphqlservice.graphql;
 
+import nh.springgraphql.graphqlservice.domain.Comment;
+import nh.springgraphql.graphqlservice.domain.StoryRepository;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.stereotype.Controller;

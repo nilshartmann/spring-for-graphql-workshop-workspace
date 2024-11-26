@@ -1,17 +1,10 @@
 package nh.springgraphql.graphqlservice.graphql;
 
-import nh.springgraphql.graphqlservice.domain.MutationController;
-import nh.springgraphql.graphqlservice.domain.StoryRepository;
-import org.apache.tomcat.util.http.parser.HttpParser;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.graphql.GraphQlTest;
 import org.springframework.boot.test.autoconfigure.graphql.tester.AutoConfigureGraphQlTester;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
-import org.springframework.graphql.test.tester.ExecutionGraphQlServiceTester;
 import org.springframework.graphql.test.tester.GraphQlTester;
-import org.springframework.graphql.test.tester.HttpGraphQlTester;
 import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.Map;
