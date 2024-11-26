@@ -7,6 +7,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
 @EnableAsync
+@EnableCaching
 public class GraphqlServiceApplication {
 
     public static void main(String[] args) {

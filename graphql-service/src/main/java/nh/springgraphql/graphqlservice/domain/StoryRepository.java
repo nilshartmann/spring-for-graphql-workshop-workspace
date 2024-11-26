@@ -1,5 +1,7 @@
 package nh.springgraphql.graphqlservice.domain;
 
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
@@ -48,11 +50,22 @@ public class StoryRepository {
         return Optional.empty();
     }
 
-
+    @Cacheable(value = "excerpt-cache", key = "#story.id() + '_' +#maxLength")
     public String generateExcerpt(Story story, int maxLength) {
+        try {
+            Thread.sleep(2500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         var b = story.body();
         return b.substring(0, Math.min(maxLength, b.length()-1));
     }
+
+//    @CacheEvict(key = "")
+//    public void removeStory(Story story, int maxLength) {
+//        CacheManager m;
+//        m.getCache("").
+//    }
 
     public Optional<Comment> findComment(String id) {
         return this.stories.stream()

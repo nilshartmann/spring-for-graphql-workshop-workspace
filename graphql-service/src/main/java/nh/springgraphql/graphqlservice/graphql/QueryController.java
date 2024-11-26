@@ -36,9 +36,11 @@ public class QueryController {
 
     @SchemaMapping
     String excerpt(Story story, @Argument int maxLength) {
+
         log.info("Excerpt for story {} {}", story.id(), maxLength);
-        var actualLength = Math.min(story.body().length(), maxLength);
-        return story.body().substring(0, actualLength);
+        return storyRepository.generateExcerpt(story, maxLength);
+//        var actualLength = Math.min(story.body().length(), maxLength);
+//        return story.body().substring(0, actualLength);
     }
 
 
