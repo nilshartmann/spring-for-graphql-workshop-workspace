@@ -6,6 +6,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
+@EnableAsync
 public class GraphqlServiceApplication {
 
     public static void main(String[] args) {

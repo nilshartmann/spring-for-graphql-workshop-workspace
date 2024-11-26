@@ -24,4 +24,10 @@ public class GraphQlConfig {
     NodeId.NodeIdConverter nodeIdConverter() {
         return new NodeId.NodeIdConverter();
     }
+
+    @Bean
+    SimplifiedTracingInstrumentation tracingInstrumentation() {
+        return new SimplifiedTracingInstrumentation();
+    }
+
 }

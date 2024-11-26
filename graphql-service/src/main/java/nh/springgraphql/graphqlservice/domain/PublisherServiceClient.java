@@ -19,7 +19,7 @@ import java.util.concurrent.CompletableFuture;
 public class PublisherServiceClient {
     private static final Logger log = LoggerFactory.getLogger(PublisherServiceClient.class);
 
-    private final static long slowdownRequest = 0;
+    private final static long slowdownRequest = 500;
 
     private final RestClient restClient;
 
@@ -49,6 +49,13 @@ public class PublisherServiceClient {
 
             throw ex;
         }
+    }
+
+    @Async
+    public CompletableFuture<Optional<Map<String, String>>> fetchPublisherAsync(String publisherId) {
+        return CompletableFuture.completedFuture(
+             fetchPublisher(publisherId)
+        );
     }
 
     public static void main(String[] args) {
