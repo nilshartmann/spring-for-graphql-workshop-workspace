@@ -1,9 +1,29 @@
+enum MediaType {
+    image,
+    video,
+    audio,
+}
+
+type MediaMetadata {
+    dimensions: String
+    duration: Int
+    codec: String
+}
+
+type Media {
+    id: ID!
+    url: String!
+    type: MediaType!
+    metadata: MediaMetadata
+}
+
 type Story {
 
     id: ID!
     title: String!
     body: String!
     excerpt(maxLength: Int! = 20): String!
+    media: [Media!]
 
 #    addresse: String!
 
