@@ -30,4 +30,10 @@ public class GraphQlConfig {
         return new SimplifiedTracingInstrumentation();
     }
 
+    @Bean
+    public RuntimeWiringConfigurer directiveConfigurer() {
+        return wiringBuilder -> wiringBuilder.directive("auth", new AuthorizationDirectiveWiring());
+    }
+
+
 }

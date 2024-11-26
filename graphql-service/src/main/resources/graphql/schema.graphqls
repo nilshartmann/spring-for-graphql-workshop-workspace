@@ -3,6 +3,14 @@ scalar DateTime
 "https://scalars.graphql.org/andimarek/date-time.html"
 )
 
+# Eine eigene Direktive, mit der man an einem Feld angeben kann,
+# welche Rolle für den Zugriff erforderlich ist.
+# Wenn die entsprechende Rolle nicht vorhanden ist, wird null zurückgeliefert
+# Dieses Verhalten ist in AuthorizationDirectiveWiring implementiert
+#   Im Schema exemplarisch beim Publisher-Feld hinzugefügt (nur ADMINs dürfen
+#   den Publisher einer Story sehen)
+directive @auth(role: String!) on FIELD_DEFINITION
+
 interface Node {
     id: ID!
 }
@@ -48,7 +56,10 @@ type Story implements Node {
 
     # Nullable, weil zur Laufzeit evtl.
     # nicht ermittelbar
-    publisher: Publisher
+    # Darf nur von Benutzern mit ROLE_ADMIN ausgeführt werden
+    #  ansonsten wird null zurückgeliefert
+    #  s. Klasse AuthorizationDirectiveWiring
+    publisher: Publisher @auth(role: "ROLE_ADMIN")
 
 #    addresse: String!
 
